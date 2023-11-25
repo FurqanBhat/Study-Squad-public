@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:study_squad/screens/bookmarks.dart';
 import 'package:study_squad/screens/home.dart';
-import 'package:study_squad/authentication/login.dart';
+import 'package:study_squad/screens/login.dart';
 import 'package:study_squad/screens/profile.dart';
-import 'package:study_squad/authentication/register.dart';
+import 'package:study_squad/screens/register.dart';
 import 'package:study_squad/screens/settings.dart';
 
 class RouteManager{

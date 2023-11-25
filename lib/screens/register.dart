@@ -46,13 +46,13 @@ class _RegisterState extends State<Register> {
                   child: Column(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(top: constraints.maxHeight*0.15, left: 30, right: 30),
-                        padding: EdgeInsets.all(20),
+                        margin: EdgeInsets.only(top: constraints.maxHeight*0.1, left: 30, right: 30),
+                        padding: EdgeInsets.all(17),
                         child: Icon(Icons.account_circle, size: 100,)
                       ),
                       Container(
                         margin: EdgeInsets.only(top:0, left: 30, right: 30, bottom: 20),
-                        padding: EdgeInsets.all(20),
+                        padding: EdgeInsets.all(17),
                         child: Text(
                           "Create new \nAccount",
                           textAlign: TextAlign.center,

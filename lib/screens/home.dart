@@ -18,10 +18,10 @@ class _HomeState extends State<Home> {
     return Scaffold(
         body: pages[index],
         bottomNavigationBar: BottomNavigationBar(
-          iconSize: 28,
+          iconSize: 24,
           showSelectedLabels: true,
           type: BottomNavigationBarType.shifting,
-          backgroundColor: Colors.white,
+          backgroundColor:Color.fromARGB(155, 220, 215, 204),
           selectedItemColor: Colors.black,
           unselectedItemColor: Colors.grey,
           selectedFontSize: 15,
@@ -77,7 +77,7 @@ class BoxContainer extends StatelessWidget {
               number,
               textAlign: TextAlign.left,
               style: const TextStyle(
-                fontSize: 45,
+                fontSize: 40,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -113,7 +113,6 @@ class downBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       padding: const EdgeInsets.all(20),
       margin: const EdgeInsets.only(left: 10.0, right: 10.0),
@@ -141,14 +140,14 @@ class downBox extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  width: 80,
+                  width: 67,
                 ),
                 Icon(
                   physicalOnline,
                   size: 25,
                 ),
                 const SizedBox(
-                  width: 80,
+                  width: 67,
                 ),
                 Text(
                   classFormat,
@@ -181,11 +180,11 @@ class downBox extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  width: 130,
+                  width: 125,
                 ),
                 const Icon(
                   Icons.notifications,
-                  size: 35,
+                  size: 28,
                 ),
               ],
             )
@@ -252,7 +251,7 @@ class HomeScreen extends StatelessWidget {
                     child: Text(
                       'Welcome, StudySquad',
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 25,
                       ),
                     )
                 ),
@@ -306,7 +305,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     )
                 ),
-                const downBox(agendaActions: 'Book', classFormat: 'Online', course: 'MATH 101', physicalOnline: Icons.language, time: '9:30 AM - 11:00 AM'),
+                const downBox(agendaActions: 'Book', classFormat: ' Online ', course: 'MATH 101', physicalOnline: Icons.language, time: '9:30 AM - 11:00 AM'),
                 const SizedBox(
                   height: 1,
                 ),

@@ -13,12 +13,12 @@ class Profile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 10),
+                  margin: EdgeInsets.symmetric(vertical: 20),
                   height: 100,
                   child: Stack(
                     children: [
                       Positioned(
-                        top: 30,
+                        top: 25,
                         left: 20,
                         child: IconButton(
                           icon: Icon(Icons.settings, size: 30,),
@@ -34,7 +34,7 @@ class Profile extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        top: 30,
+                        top: 25,
                         right: 20,
                         child: IconButton(
                           icon: Icon(Icons.logout, size: 30,),
@@ -265,6 +265,7 @@ class Profile extends StatelessWidget {
                 ),
                 Container(
                   height: 300,
+                  color: Color.fromARGB(50, 220, 215, 204),
                   child: ListView.builder(
                     itemCount: 4,
                     itemBuilder: (context, index){

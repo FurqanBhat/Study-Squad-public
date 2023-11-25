@@ -6,9 +6,9 @@ import 'package:study_squad/routes.dart';
 import 'package:study_squad/screens/bookings.dart';
 import 'package:study_squad/screens/bookmarks.dart';
 import 'package:study_squad/screens/home.dart';
-import 'package:study_squad/authentication/login.dart';
+import 'package:study_squad/screens/login.dart';
 import 'package:study_squad/screens/profile.dart';
-import 'package:study_squad/authentication/register.dart';
+import 'package:study_squad/screens/register.dart';
 import 'package:study_squad/services/auth.dart';
 import 'package:study_squad/wrapper.dart';
 
@@ -30,9 +30,13 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<CurrUser?>.value(
-      value: AuthService().currUser,
-      initialData: null,
+    return MultiProvider(
+      providers: [
+        StreamProvider<CurrUser?>.value(
+        value: AuthService().currUser,
+        initialData: null,
+        ),
+      ],
       child: MaterialApp(
         theme: ThemeData(
           colorScheme: ColorScheme.light(

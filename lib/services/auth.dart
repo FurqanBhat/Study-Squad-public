@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 import 'package:study_squad/models/curr_user.dart';
 class AuthService{
   final FirebaseAuth _auth=FirebaseAuth.instance;
@@ -43,6 +44,5 @@ class AuthService{
   Stream<CurrUser?> get currUser{
     return _auth.authStateChanges().map(_currUser);
   }
-
 
 }
