@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:study_squad/routes.dart';
+import 'package:study_squad/services/auth.dart';
+import 'package:study_squad/shared/loading.dart';
 class Login extends StatefulWidget {
-  const Login({super.key});
+  Function toggle;
+  Login({super.key, required this.toggle});
 
   @override
   State<Login> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
+  bool loading=false;
   late TextEditingController emailController;
   late TextEditingController passwordController;
+  GlobalKey<FormState> _formKey=GlobalKey();
+  AuthService _authService=AuthService();
+  String error="";
   @override
   void initState() {
     super.initState();
@@ -23,12 +32,13 @@ class _LoginState extends State<Login> {
   }
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+
+    return loading? Loading() :  Scaffold(
         backgroundColor: Color.fromRGBO(240, 219, 205,1),
         body: LayoutBuilder(
           builder: (context, constraints){
             return Form(
+              key: _formKey,
               child: SingleChildScrollView(
                 child: Container(
                   margin: EdgeInsets.symmetric(horizontal: 20),
@@ -53,6 +63,7 @@ class _LoginState extends State<Login> {
                       ),
 
                       TextFormField(
+                        validator: (val)=> val!.isEmpty ? 'Please Enter Your Email': null,
                         controller: emailController,
                         decoration: InputDecoration(
                           fillColor: Colors.white,
@@ -70,8 +81,9 @@ class _LoginState extends State<Login> {
                       ),
                       SizedBox(height: 20,),
                       TextFormField(
+                        validator: (val)=> val!.length<6 ? "Password must be longer than 6 characters" : null,
                         obscureText: true,
-                        controller: emailController,
+                        controller: passwordController,
                         decoration: InputDecoration(
                           fillColor: Colors.white,
                           filled: true,
@@ -100,7 +112,28 @@ class _LoginState extends State<Login> {
                           ),
 
                         ),
-                        onPressed: (){},
+                        onPressed: () async{
+                          if(_formKey.currentState!.validate()){
+                            setState(() {
+                              loading=true;
+                            });
+                            try{
+                              dynamic currUser=await _authService.loginWithEmailAndPassword(emailController.text, passwordController.text);
+                              if(currUser==null){
+                                setState(() {
+                                  loading=false;
+                                  error="Invalid Credentials";
+                                });
+                              }
+
+                            }catch(e){
+                              print(e.toString());
+                            }
+                          }
+
+
+
+                        },
                       ),
                       TextButton(
                         child: Text('Forgot password'),
@@ -108,7 +141,16 @@ class _LoginState extends State<Login> {
                       ),
                       TextButton(
                         child: Text('Signup!'),
-                        onPressed: (){},
+                        onPressed: (){
+                          widget.toggle();
+                        },
+                      ),
+                      Text(
+                        error,
+                        style: TextStyle(
+                          color: Colors.red,
+                        ),
+
                       ),
                     ],
                   ),
@@ -118,7 +160,6 @@ class _LoginState extends State<Login> {
             );
           },
         ),
-      ),
     );
   }
 }

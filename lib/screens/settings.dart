@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:study_squad/services/auth.dart';
 
 final class SettingsItem {
   String name;
@@ -13,6 +14,7 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<Settings> {
+  AuthService _authService=AuthService();
   List<SettingsItem> items = [
     SettingsItem("Account Settings", Icons.person),
     SettingsItem("Payment Methods", Icons.credit_card),
@@ -105,13 +107,12 @@ class _SettingsPageState extends State<Settings> {
                   backgroundColor: Color.fromRGBO(250, 172, 140,0.2),
                   foregroundColor: Colors.black,
                   elevation: 0,
-                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 150),
+                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 100),
                 ),
 
                   onPressed:() {
-                    // action
                   },
-                  child: Text("Log out")
+                  child: Text("Delete Account")
               )
             ],
           ),

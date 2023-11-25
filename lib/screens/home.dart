@@ -15,8 +15,7 @@ class _HomeState extends State<Home> {
     List<Widget> pages=[
       HomeScreen(),Booking(), Bookmarks(), Profile(homeContext: context,)
     ];
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         body: pages[index],
         bottomNavigationBar: BottomNavigationBar(
           iconSize: 28,
@@ -54,7 +53,6 @@ class _HomeState extends State<Home> {
           ],
         ),
 
-      ),
     );
   }
 }

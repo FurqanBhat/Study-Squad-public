@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:study_squad/routes.dart';
+import 'package:study_squad/services/auth.dart';
 class Profile extends StatelessWidget {
   BuildContext? homeContext;
   Profile({super.key, this.homeContext});
@@ -36,9 +37,9 @@ class Profile extends StatelessWidget {
                         top: 30,
                         right: 20,
                         child: IconButton(
-                          icon: Icon(Icons.person_add_alt_1, size: 30,),
-                          onPressed: (){
-                            print('j');
+                          icon: Icon(Icons.logout, size: 30,),
+                          onPressed: () async{
+                            await AuthService().logout();
                           },
                         ),
                       ),

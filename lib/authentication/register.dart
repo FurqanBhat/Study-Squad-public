@@ -1,14 +1,25 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:study_squad/services/auth.dart';
+import 'package:study_squad/shared/loading.dart';
+
+import '../routes.dart';
 class Register extends StatefulWidget {
-  const Register({super.key});
+  Function toggle;
+  Register({super.key, required this.toggle});
 
   @override
   State<Register> createState() => _RegisterState();
 }
 
 class _RegisterState extends State<Register> {
+  GlobalKey<FormState> _formKey=GlobalKey();
   late TextEditingController emailController;
   late TextEditingController passwordController;
+  final AuthService _authService=AuthService();
+  String error="";
+  bool loading=false;
   @override
   void initState() {
     super.initState();
@@ -23,12 +34,12 @@ class _RegisterState extends State<Register> {
   }
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return loading ? Loading(): Scaffold(
         backgroundColor: Color.fromRGBO(240, 219, 205,1),
         body: LayoutBuilder(
           builder: (context, constraints){
             return Form(
+              key: _formKey,
               child: SingleChildScrollView(
                 child: Container(
                   margin: EdgeInsets.symmetric(horizontal: 20),
@@ -53,6 +64,7 @@ class _RegisterState extends State<Register> {
                       ),
 
                       TextFormField(
+                        validator: (val)=> val!.isEmpty ? 'Please Enter Your Email': null,
                         controller: emailController,
                         decoration: InputDecoration(
                           fillColor: Colors.white,
@@ -70,8 +82,9 @@ class _RegisterState extends State<Register> {
                       ),
                       SizedBox(height: 20,),
                       TextFormField(
+                        validator: (val)=> val!.length<6 ? "Password must be longer than 6 characters" : null,
                         obscureText: true,
-                        controller: emailController,
+                        controller: passwordController,
                         decoration: InputDecoration(
                           fillColor: Colors.white,
                           filled: true,
@@ -100,13 +113,39 @@ class _RegisterState extends State<Register> {
                           ),
 
                         ),
-                        onPressed: (){},
+                        onPressed: () async{
+                          if(_formKey.currentState!.validate()){
+                            setState(() {
+                              loading=true;
+                            });
+                            try{
+                              dynamic currUser=await _authService.registerWithEmailAndPassword(emailController.text, passwordController.text);
+                              if(currUser==null){
+                                setState(() {
+                                  loading=false;
+                                  error="Invalid Credentials";
+                                });
+                              }
+                            }catch(e){
+                              print(e.toString() +"error");
+                            }
+                          }
+                        },
                       ),
                       SizedBox(height: 10,),
                       Text("Already have an Account?", style: TextStyle(fontSize: 16),),
                       TextButton(
                         child: Text('Login!'),
-                        onPressed: (){},
+                        onPressed: (){
+                          widget.toggle();
+                        },
+                      ),
+                      Text(
+                        error,
+                        style: TextStyle(
+                          color: Colors.red,
+                        ),
+
                       ),
                     ],
                   ),
@@ -116,7 +155,6 @@ class _RegisterState extends State<Register> {
             );
           },
         ),
-      ),
     );
   }
 }
