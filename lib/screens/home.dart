@@ -119,7 +119,7 @@ class downBox extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       margin: const EdgeInsets.only(left: 10.0, right: 10.0),
-      height: 150,
+      height: 180,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7.0),
         color: const Color.fromARGB(255, 241, 205, 204),
@@ -143,7 +143,7 @@ class downBox extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  width: 130,
+                  width: 80,
                 ),
                 Icon(
                   physicalOnline,
@@ -183,7 +183,7 @@ class downBox extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  width: 120,
+                  width: 130,
                 ),
                 const Icon(
                   Icons.notifications,

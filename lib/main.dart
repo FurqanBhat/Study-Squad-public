@@ -3,7 +3,9 @@ import 'package:study_squad/routes.dart';
 import 'package:study_squad/screens/bookings.dart';
 import 'package:study_squad/screens/bookmarks.dart';
 import 'package:study_squad/screens/home.dart';
+import 'package:study_squad/screens/login.dart';
 import 'package:study_squad/screens/profile.dart';
+import 'package:study_squad/screens/register.dart';
 void main(){
   runApp(MyApp());
 }
