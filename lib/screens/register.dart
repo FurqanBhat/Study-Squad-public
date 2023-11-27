@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:study_squad/services/auth.dart';
+import 'package:study_squad/shared/constants.dart';
 import 'package:study_squad/shared/loading.dart';
 
 import '../routes.dart';
@@ -100,11 +101,7 @@ class _RegisterState extends State<Register> {
                       ),
                       SizedBox(height: 20,),
                       ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                            backgroundColor: Colors.black,
-                            padding: EdgeInsets.symmetric(horizontal: 80, vertical: 20)
-                        ),
+                        style: buttonStyle,
                         child: Text(
                           'Sign Up',
                           style: TextStyle(

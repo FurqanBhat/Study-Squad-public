@@ -8,6 +8,7 @@ class AuthService{
     try{
       UserCredential userCredential=await _auth.createUserWithEmailAndPassword(email: email, password: password);
       User? user=userCredential.user;
+      user!.sendEmailVerification();
       return _currUser(user);
     }catch(e){
       print(e.toString());
@@ -38,7 +39,10 @@ class AuthService{
 
 
   CurrUser? _currUser(User? user){
-    return user == null ? null : CurrUser(uid: user.uid);
+    if(user!=null){
+      print(user.emailVerified);
+    }
+    return user == null ? null : CurrUser(uid: user.uid, emailVerified: user.emailVerified);
   }
 
   Stream<CurrUser?> get currUser{

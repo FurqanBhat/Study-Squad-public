@@ -1,6 +1,7 @@
 class CurrUser{
   String uid;
-  CurrUser({required this.uid});
+  bool emailVerified;
+  CurrUser({required this.uid, this.emailVerified=false});
 
 
 }
