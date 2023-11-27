@@ -125,7 +125,7 @@ class downBox extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 OutlinedButton(
                   style: const ButtonStyle(
@@ -139,16 +139,16 @@ class downBox extends StatelessWidget {
                     agendaActions,
                   ),
                 ),
-                const SizedBox(
-                  width: 67,
-                ),
+                // const SizedBox(
+                //   width: 67,
+                // ),
                 Icon(
                   physicalOnline,
                   size: 25,
                 ),
-                const SizedBox(
-                  width: 67,
-                ),
+                // const SizedBox(
+                //   width: 67,
+                // ),
                 Text(
                   classFormat,
                   textAlign: TextAlign.center,
@@ -171,6 +171,7 @@ class downBox extends StatelessWidget {
               ),
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   time,
@@ -179,9 +180,9 @@ class downBox extends StatelessWidget {
                     fontWeight: FontWeight.w300,
                   ),
                 ),
-                const SizedBox(
-                  width: 125,
-                ),
+                // const SizedBox(
+                //   width: 125,
+                // ),
                 const Icon(
                   Icons.notifications,
                   size: 28,
@@ -305,7 +306,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     )
                 ),
-                const downBox(agendaActions: 'Book', classFormat: ' Online ', course: 'MATH 101', physicalOnline: Icons.language, time: '9:30 AM - 11:00 AM'),
+                const downBox(agendaActions: 'Book', classFormat: '  Online  ', course: 'MATH 101', physicalOnline: Icons.language, time: '9:30 AM - 11:00 AM'),
                 const SizedBox(
                   height: 1,
                 ),
