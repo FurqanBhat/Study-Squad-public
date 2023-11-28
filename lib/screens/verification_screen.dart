@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:study_squad/models/curr_user.dart';
+import 'package:study_squad/services/auth.dart';
 import 'package:study_squad/shared/constants.dart';
 class VerificationScreen extends StatefulWidget {
   Function toggle;
@@ -12,9 +15,37 @@ class VerificationScreen extends StatefulWidget {
 }
 
 class _VerificationScreenState extends State<VerificationScreen> {
+  void _startReloading() async {
+    User? currUser=await FirebaseAuth.instance.currentUser;
+    await currUser!.reload();
+    if(currUser!.emailVerified){
+      widget.toggle();
+    }
+    // Periodically update the counter every 5 seconds
+    Future.delayed(Duration(seconds: 3), () {
+      setState(() {
+        // Add logic here for reloading data or performing other actions
+      });
+      // Restart the process to reload again
+      _startReloading();
+    });
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _startReloading();
+
+  }
+  @override
+  void dispose()  {
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     User? currUser=FirebaseAuth.instance.currentUser;
+    currUser!.reload();
+    AuthService _authService= AuthService();
     String? email=currUser!.email;
     return Scaffold(
       body: Container(
@@ -27,7 +58,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
             children: [
               SizedBox(height: 30,),
               Text(
-                "Verification email has been sent to $email, Please verify it and then click on Refresh button",
+                "Verification email has been sent to $email, You will be automatically redirected once you verify. If not,  click on Refresh button",
                 textAlign: TextAlign.center,
                   style: TextStyle(
                   fontSize: 20,
@@ -69,6 +100,17 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   child: Text("Resend Email"),
                   onPressed: () async{
                     await currUser!.sendEmailVerification();
+
+                  },
+                ),
+              ),
+              SizedBox(height: 30,),
+              Center(
+                child: ElevatedButton(
+                  style: buttonStyle,
+                  child: Text("Go to Login Screen"),
+                  onPressed: () async{
+                    await _authService.logout();
 
                   },
                 ),
