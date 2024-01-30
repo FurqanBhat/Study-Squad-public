@@ -1,3 +1,1 @@
-| | | | | |
-|---|---|---|---|---|
 <img src="homeScreen.png" alt="Image Description" width="200"/>  <img src="SearchScreen.png" alt="Image Description" width="200"/>  <img src="SearchBar.png" alt="Image Description" width="200"/>  <img src="filePreview.png" alt="Image Description" width="200"/>  <img src="library.png" alt="Image Description" width="200"/>  <img src="settings.png" alt="Image Description" width="200"/>  <img src="login.png" alt="Image Description" width="200"/>  <img src="register.png" alt="Image Description" width="200"/>  <img src="verification.png" alt="Image Description" width="200"/>
